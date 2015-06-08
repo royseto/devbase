@@ -79,7 +79,7 @@ RUN R CMD BATCH --no-save --no-restore install_packages.R
 
 # Install PhantomJS.
 
-install_phantomjs.sh /tmp/build/
+COPY install_phantomjs.sh /tmp/build/
 RUN /tmp/build/install_phantomjs.sh
 
 # Install GNU Parallel.
