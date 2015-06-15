@@ -21,7 +21,6 @@ RUN apt-get install -y -q software-properties-common && \
     add-apt-repository 'deb http://cran.rstudio.com/bin/linux/ubuntu trusty/' && \
     add-apt-repository ppa:git-core/ppa && \
     add-apt-repository ppa:pi-rho/dev && \
-    add-apt-repository ppa:ubuntu-elisp/ppa && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
 RUN apt-get update && apt-get install -y -q curl && \
@@ -33,7 +32,7 @@ RUN apt-get update && apt-get install -y -q \
     build-essential \
     bzip2 \
     curl \
-    emacs-snapshot \
+    emacs \
     git \
     git-man \
     imagemagick \
