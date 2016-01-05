@@ -94,7 +94,7 @@ RUN /tmp/build/install_redis.sh
 # Install Emacs 24.5 from source.
 
 RUN wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
-RUN tar xzf emacs-24.5
+RUN tar xzf emacs-24.5.tar.gz
 WORKDIR /tmp/build/emacs-24.5
 RUN ./configure && make && make install
 
