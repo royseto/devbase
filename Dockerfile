@@ -32,7 +32,6 @@ RUN apt-get update && apt-get install -y -q \
     build-essential \
     bzip2 \
     curl \
-    emacs \
     git \
     git-man \
     imagemagick \
@@ -90,6 +89,13 @@ RUN bash -c "(echo 'will cite' | parallel --bibtex)"
 
 COPY install_redis.sh /tmp/build/
 RUN /tmp/build/install_redis.sh
+
+# Install Emacs 24.5 from source.
+
+RUN wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
+RUN tar xzf emacs-24.5
+WORKDIR /tmp/build/emacs-24.5
+RUN ./configure && make && make install
 
 # Enable passwordless sudo for users in the sudo group.
 
