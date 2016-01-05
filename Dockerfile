@@ -48,6 +48,7 @@ RUN apt-get update && apt-get install -y -q \
     python2.7-dev \
     r-base \
     r-base-dev \
+    silversearcher-ag \
     tmux \
     unzip \
     vim \
