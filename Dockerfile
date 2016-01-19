@@ -24,7 +24,7 @@ RUN apt-get install -y -q software-properties-common && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
 RUN apt-get update && apt-get install -y -q curl && \
-    (curl -sL https://deb.nodesource.com/setup | bash -)
+    (curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -)
 
 # Install Ubuntu packages.
 
@@ -64,7 +64,7 @@ RUN bash -c "(. /usr/local/rvm/scripts/rvm && gem install gist)"
 
 # Install npm packages.
 
-RUN npm install -g brunch@1.8.3 karma@0.12.32 karma-cli@0.0.4 bower@1.4.1
+RUN npm install -g brunch@1.8.3 karma@0.12.32 karma-cli@0.0.4 bower@1.4.1 tern
 
 # Install csvkit.
 
