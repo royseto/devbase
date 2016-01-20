@@ -64,7 +64,7 @@ RUN bash -c "(. /usr/local/rvm/scripts/rvm && gem install gist)"
 
 # Install npm packages.
 
-RUN npm install -g brunch@1.8.3 karma@0.12.32 karma-cli@0.0.4 bower@1.4.1 tern
+RUN npm install -g brunch@1.8.3 karma@0.12.32 karma-cli@0.0.4 bower@1.4.1 tern js-beautify jshint
 
 # Install csvkit.
 
