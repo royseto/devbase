@@ -64,7 +64,7 @@ RUN bash -c "(. /usr/local/rvm/scripts/rvm && gem install gist)"
 
 # Install npm packages.
 
-RUN npm install -g brunch@1.8.3 karma@0.12.32 karma-cli@0.0.4 bower@1.4.1 tern js-beautify jshint
+RUN npm install -g brunch@2.2.3 karma-cli@0.0.4 bower@1.7.7 tern js-beautify jshint
 
 # Install csvkit.
 
@@ -97,6 +97,12 @@ RUN wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
 RUN tar xzf emacs-24.5.tar.gz
 WORKDIR /tmp/build/emacs-24.5
 RUN ./configure && make && make install
+
+# Install Python 2.7.11.
+
+RUN apt-get update -y && apt-get install -y libffi-dev libffi6 libffi6-dbg
+RUN wget https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/python2.7.11_2.7.11-local1_amd64.deb
+RUN dpkg -i python2.7.11_2.7.11-local1_amd64.deb
 
 # Enable passwordless sudo for users in the sudo group.
 
