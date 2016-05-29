@@ -21,7 +21,7 @@ RUN apt-get install -y -q software-properties-common && \
     add-apt-repository 'deb http://cran.rstudio.com/bin/linux/ubuntu trusty/' && \
     add-apt-repository ppa:git-core/ppa && \
     add-apt-repository ppa:pi-rho/dev && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 &&
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     apt-get update && apt-get install -y -q curl && \
     (curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -)
 
@@ -55,8 +55,8 @@ RUN apt-get update && apt-get install -y -q \
 
 # Install RVM, Ruby, and gist.
 
-RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 &&
-    (curl -sSL https://get.rvm.io | bash -s stable --ruby) &&
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && \
+    (curl -sSL https://get.rvm.io | bash -s stable --ruby) && \
     bash -c "(. /usr/local/rvm/scripts/rvm && gem install gist)"
 
 # Install npm packages.
@@ -90,14 +90,14 @@ RUN /tmp/build/install_redis.sh
 
 # Install Emacs 24.5 from source.
 
-RUN wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz &&
-    tar xzf emacs-24.5.tar.gz &&
+RUN wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz && \
+    tar xzf emacs-24.5.tar.gz && \
     (cd /tmp/build/emacs-24.5 && ./configure && make && make install)
 
 # Install Python 2.7.11.
 
-RUN apt-get update -y && apt-get install -y libffi-dev libffi6 libffi6-dbg &&
-    wget https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/python2.7.11_2.7.11-local1_amd64.deb &&
+RUN apt-get update -y && apt-get install -y libffi-dev libffi6 libffi6-dbg && \
+    wget https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/python2.7.11_2.7.11-local1_amd64.deb && \
     dpkg -i python2.7.11_2.7.11-local1_amd64.deb
 
 # Enable passwordless sudo for users in the sudo group.
@@ -108,5 +108,3 @@ RUN sed -ie '/sudo/ s/ALL$/NOPASSWD: ALL/' /etc/sudoers
 
 WORKDIR /
 RUN /bin/rm -rf /tmp/build
-
-
