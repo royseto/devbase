@@ -90,9 +90,12 @@ RUN /tmp/build/install_redis.sh
 
 # Install Emacs 24.5 from source.
 
-RUN wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz && \
-    tar xzf emacs-24.5.tar.gz && \
-    (cd /tmp/build/emacs-24.5 && ./configure && make && make install)
+RUN wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz \
+  && tar xzf emacs-24.5.tar.gz \
+  && cd /tmp/build/emacs-24.5 \
+  && ./configure \
+  && make \
+  && make install
 
 # Install Python 2.7.11.
 
