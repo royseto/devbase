@@ -88,11 +88,15 @@ RUN bash -c "(echo 'will cite' | parallel --bibtex)"
 COPY install_redis.sh /tmp/build/
 RUN /tmp/build/install_redis.sh
 
-# Install Emacs 24.5 from source.
+# Install Emacs 24.5 from private Debian package
+# to work around https://github.com/docker/docker/issues/22801
 
-RUN wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz && tar xzf emacs-24.5.tar.gz
-WORKDIR /tmp/build/emacs-24.5
-RUN ./configure && make && make install
+# RUN wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz && tar xzf emacs-24.5.tar.gz
+# WORKDIR /tmp/build/emacs-24.5
+# RUN ./configure && make && make install
+
+RUN wget https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/emacs24.5.2_24.5.2-1_amd64.deb \
+  && dpkg -i /tmp/build/emacs24.5.2_24.5.2-1_amd64.deb
 
 # Install Python 2.7.11.
 
