@@ -107,7 +107,7 @@ RUN apt-get update -y && apt-get install -y libffi-dev libffi6 libffi6-dbg && \
 # Install PyPy.
 
 COPY install_pypy.sh /tmp/build/
-RUN /tmp/build/install_pypy.sh
+RUN chmod 755 /tmp/build/install_pypy.sh && /tmp/build/install_pypy.sh
 
 # Enable passwordless sudo for users in the sudo group.
 
