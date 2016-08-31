@@ -104,6 +104,11 @@ RUN apt-get update -y && apt-get install -y libffi-dev libffi6 libffi6-dbg && \
     wget https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/python2.7.11_2.7.11-local1_amd64.deb && \
     dpkg -i python2.7.11_2.7.11-local1_amd64.deb
 
+# Install PyPy.
+
+COPY install_pypy.sh /tmp/build/
+RUN /tmp/build/install_pypy.sh
+
 # Enable passwordless sudo for users in the sudo group.
 
 RUN sed -ie '/sudo/ s/ALL$/NOPASSWD: ALL/' /etc/sudoers
