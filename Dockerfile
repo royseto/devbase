@@ -23,7 +23,7 @@ RUN apt-get install -y -q software-properties-common && \
     add-apt-repository ppa:pi-rho/dev && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     apt-get update && apt-get install -y -q curl && \
-    (curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -)
+    (curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -)
 
 # Install Ubuntu packages.
 
@@ -61,7 +61,10 @@ RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A170311380
 
 # Install npm packages.
 
-RUN npm install -g brunch@2.2.3 karma-cli@0.0.4 bower@1.7.7 tern js-beautify jshint
+RUN npm install -g brunch@2.10.9 && \
+    npm install -g karma-cli@1.0.1 && \
+    npm install -g bower@1.8.0 && \
+    npm install -g tern js-beautify jshint
 
 # Install csvkit.
 
