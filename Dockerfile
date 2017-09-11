@@ -19,11 +19,12 @@ RUN locale-gen en_US.UTF-8 && dpkg-reconfigure locales
 
 RUN apt-get install -y -q software-properties-common && \
     add-apt-repository 'deb http://cran.rstudio.com/bin/linux/ubuntu xenial/' && \
-    add-apt-repository ppa:git-core/ppa && \
-    add-apt-repository ppa:pi-rho/dev && \
+    add-apt-repository -y ppa:git-core/ppa && \
+    add-apt-repository -y ppa:pi-rho/dev && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     apt-get update && apt-get install -y -q curl && \
-    (curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -)
+    (curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -) && \
+    apt-get install -y -q nodejs
 
 # Install Ubuntu packages.
 
