@@ -18,7 +18,7 @@ RUN locale-gen en_US.UTF-8 && dpkg-reconfigure locales
 # Add package repositories.
 
 RUN apt-get install -y -q software-properties-common && \
-    add-apt-repository 'deb http://cran.rstudio.com/bin/linux/ubuntu trusty/' && \
+    add-apt-repository 'deb http://cran.rstudio.com/bin/linux/ubuntu xenial/' && \
     add-apt-repository ppa:git-core/ppa && \
     add-apt-repository ppa:pi-rho/dev && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
