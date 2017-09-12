@@ -110,11 +110,12 @@ RUN apt-get update -y && apt-get install -y libffi-dev libffi6 libffi6-dbg && \
 # Install PyPy.
 
 COPY install_pypy.sh /tmp/build/
-RUN chmod 755 /tmp/build/install_pypy.sh && /tmp/build/install_pypy.sh
+RUN /tmp/build/install_pypy.sh
 
 # Enable passwordless sudo for users in the sudo group.
+# TODO: Fix me for Ubuntu 16.04
 
-RUN sed -ie '/sudo/ s/ALL$/NOPASSWD: ALL/' /etc/sudoers
+# RUN sed -ie '/sudo/ s/ALL$/NOPASSWD: ALL/' /etc/sudoers
 
 # Clean up.
 
