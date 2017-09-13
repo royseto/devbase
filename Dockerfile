@@ -46,6 +46,7 @@ RUN apt-get update && apt-get install -y -q \
     r-base \
     r-base-dev \
     silversearcher-ag \
+    sudo \
     tmux \
     unzip \
     vim \
@@ -113,9 +114,8 @@ COPY install_pypy.sh /tmp/build/
 RUN bash /tmp/build/install_pypy.sh
 
 # Enable passwordless sudo for users in the sudo group.
-# TODO: Fix me for Ubuntu 16.04
 
-# RUN sed -ie '/sudo/ s/ALL$/NOPASSWD: ALL/' /etc/sudoers
+RUN sed -ie '/sudo/ s/ALL$/NOPASSWD: ALL/' /etc/sudoers
 
 # Clean up.
 
