@@ -85,7 +85,7 @@ RUN /tmp/build/install_phantomjs.sh
 # Install GNU Parallel.
 
 RUN (wget -O - pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) | bash
-RUN bash -c "(echo 'will cite' | parallel --bibtex)"
+RUN bash -c "(echo 'will cite' | parallel --bibtex)" || true
 
 # Install Redis.
 
