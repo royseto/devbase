@@ -3,7 +3,7 @@
 #
 # This exposes an SSH service.
 
-FROM royseto/pgbuild:next
+FROM royseto/pgbuild
 
 ENV DEBIAN_FRONTEND noninteractive
 
