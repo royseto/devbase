@@ -23,7 +23,7 @@ RUN apt-get install -y -q software-properties-common && \
     add-apt-repository -y ppa:pi-rho/dev && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
     apt-get update && apt-get install -y -q curl && \
-    (curl -sL https://deb.nodesource.com/setup_6.x | bash -)
+    (curl -sL https://deb.nodesource.com/setup_10.x | bash -)
 
 # Install Ubuntu packages.
 
