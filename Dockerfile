@@ -1,4 +1,4 @@
-# Build a dev tools image with Python, R, NodeJS, PhantomJS, and
+# Build a dev tools image with Python, NodeJS, PhantomJS, and
 # various editors and utilities.
 #
 # This exposes an SSH service.
