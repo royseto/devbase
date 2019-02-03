@@ -18,7 +18,6 @@ RUN locale-gen en_US.UTF-8 && dpkg-reconfigure locales
 # Add package repositories.
 
 RUN apt-get install -y -q software-properties-common && \
-    add-apt-repository 'deb http://cran.rstudio.com/bin/linux/ubuntu xenial/' && \
     add-apt-repository -y ppa:git-core/ppa && \
     add-apt-repository -y ppa:pi-rho/dev && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
@@ -43,8 +42,6 @@ RUN apt-get update && apt-get install -y -q \
     python-virtualenv \
     python2.7 \
     python2.7-dev \
-    r-base \
-    r-base-dev \
     silversearcher-ag \
     sudo \
     tmux \
@@ -71,12 +68,6 @@ RUN npm install -g brunch@2.10.9 && \
 
 RUN pip install csvkit
 
-# Install R packages.
-
-COPY install_packages.R /tmp/build/
-WORKDIR /tmp/build
-RUN R CMD BATCH --no-save --no-restore install_packages.R
-
 # Install PhantomJS.
 
 COPY install_phantomjs.sh /tmp/build/
@@ -92,15 +83,23 @@ RUN bash -c "(echo 'will cite' | parallel --bibtex)" || true
 COPY install_redis.sh /tmp/build/
 RUN /tmp/build/install_redis.sh
 
-# Install Emacs 24.5 from private Debian package
+# Install Emacs 26.1 from private Debian package
 # to work around https://github.com/docker/docker/issues/22801
 
-# RUN wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz && tar xzf emacs-24.5.tar.gz
-# WORKDIR /tmp/build/emacs-24.5
-# RUN ./configure && make && make install
+# RUN wget http://ftp.gnu.org/gnu/emacs/emacs-26.1.tar.gz && tar xzf emacs-26.1.tar.gz
+# WORKDIR /tmp/build/emacs-26.1
+# RUN ./configure --with-gnutls=no && make && make install
+#
+# To build private Debian package:
+# See https://github.com/jordansissel/fpm/wiki/PackageMakeInstall
+#
+# Install Ruby and FPM
+# make install DESTDIR=/tmp/installdir
+# fpm -s dir -t deb -C /tmp/installdir -n emacs26.1 -v 26.1-1 \
+#     -p emacs26.1_VERSION_ARCH.deb --description 'Emacs 26.1' usr
 
-RUN wget https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/emacs24.5.2_24.5.2-1_amd64.deb \
-  && dpkg -i /tmp/build/emacs24.5.2_24.5.2-1_amd64.deb
+RUN wget https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/emacs26.1_26.1-1_amd64.deb \
+  && dpkg -i /tmp/build/emacs26.1_26.1-1_amd64.deb
 
 # Install Python 2.7.11.
 
