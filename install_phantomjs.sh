@@ -17,12 +17,15 @@
 # http://phantomjs.org/download.html
 #
 
+# fontconfig seems to be a hidden dependency for PhantomJS
+apt-get update && apt-get install -y libfontconfig
+
 PHANTOMJS_VER=2.1.1
 PJS=phantomjs-$PHANTOMJS_VER-linux-x86_64
 
 mkdir /usr/local/share
 cd /usr/local/share
-wget https://bitbucket.org/ariya/phantomjs/downloads/$PJS.tar.bz2
+wget -q https://bitbucket.org/ariya/phantomjs/downloads/$PJS.tar.bz2
 tar xjf $PJS.tar.bz2
 ln -sf /usr/local/share/$PJS/bin/phantomjs /usr/local/share/phantomjs
 ln -sf /usr/local/share/$PJS/bin/phantomjs /usr/local/bin/phantomjs
