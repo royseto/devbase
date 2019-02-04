@@ -62,7 +62,7 @@ RUN gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A
 RUN npm install -g brunch@2.10.9 && \
     npm install -g karma-cli@1.0.1 && \
     npm install -g bower@1.8.0 && \
-    npm install -g tern js-beautify jshint
+    npm install -g tern js-beautify jshint prettier
 
 # Install csvkit.
 
