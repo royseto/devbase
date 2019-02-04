@@ -98,13 +98,15 @@ RUN /tmp/build/install_redis.sh
 # fpm -s dir -t deb -C /tmp/installdir -n emacs26.1 -v 26.1-1 \
 #     -p emacs26.1_VERSION_ARCH.deb --description 'Emacs 26.1' usr
 
-RUN wget https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/emacs26.1_26.1-1_amd64.deb \
+WORKDIR /tmp/build
+
+RUN wget -q https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/emacs26.1_26.1-1_amd64.deb \
   && dpkg -i /tmp/build/emacs26.1_26.1-1_amd64.deb
 
 # Install Python 2.7.11.
 
 RUN apt-get update -y && apt-get install -y libffi-dev libffi6 libffi6-dbg && \
-    wget https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/python2.7.11_2.7.11-local1_amd64.deb && \
+    wget -q https://s3-us-west-1.amazonaws.com/royseto-public/dpkg/python2.7.11_2.7.11-local1_amd64.deb && \
     dpkg -i python2.7.11_2.7.11-local1_amd64.deb
 
 # Install PyPy.
